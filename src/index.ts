@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import UserRoute from "./routes/user-route";
+import DonationRoute from "./routes/donation-route";
 
 const app = express();
 
@@ -43,3 +44,4 @@ app.listen(port, host, () => {
 // })
 
 app.use('/api/user', UserRoute);
+app.use('/api/donation', DonationRoute);
