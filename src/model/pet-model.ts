@@ -10,7 +10,6 @@ interface PetDocument extends Document {
     colors: string;
     ownershipStatus: string;
     injuredStatus: string;
-    image: string;
     username: string;
 }
 
