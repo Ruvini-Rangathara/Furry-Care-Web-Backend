@@ -51,6 +51,7 @@ export const updateDonation = async (req:Request,res:Response)=>{
             }
         );
         res.json(updatedDonation);
+        console.log("update donation!")
     }catch(err){
         res.json({message:err});
         console.log("error while updating donation : ",err)
@@ -62,9 +63,11 @@ export const getDonationById = async (req: Request, res: Response) => {
     try {
         const donation = await Donation.findOne({ id: req.params.id });
         if (!donation) {
+            console.log("Donation not found");
             return res.status(404).json({ message: 'Donation not found' });
         }
         res.json(donation);
+        console.log("Donation:", donation.toString());
     } catch (err) {
         res.status(500).json({ message: 'Error while getting donation by id' });
         console.error('Error while getting donation by id:', err);
@@ -75,6 +78,7 @@ export const deleteDonation = async (req:Request,res:Response)=>{
     try{
         const removedDonation = await Donation.deleteOne({id:req.params.id});
         res.json(removedDonation);
+        console.log("delete donation!")
     }catch(err){
         res.json({message:err});
         console.log("error while deleting donation : ",err)
