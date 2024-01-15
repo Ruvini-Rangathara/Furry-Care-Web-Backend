@@ -6,6 +6,7 @@ import DonationRoute from "./routes/donation-route";
 import EventRoute from "./routes/event-route";
 import ComplaintRoute from "./routes/complaint-route";
 import PetRoute from "./routes/pet-route";
+import VetRoute from "./routes/vet-route";
 
 const app = express();
 
@@ -51,3 +52,4 @@ app.use('/api/donation', DonationRoute);
 app.use('/api/event', EventRoute);
 app.use('/api/complaint', ComplaintRoute);
 app.use('/api/pet', PetRoute);
+app.use('/api/vet', VetRoute);
