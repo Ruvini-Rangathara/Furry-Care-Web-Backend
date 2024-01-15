@@ -50,6 +50,7 @@ export const updateUser = async (req: Request, res: Response) => {
             }
         );
         res.json(updatedUser);
+        console.log("updated user!")
     } catch (err) {
         res.json({ message: err });
         console.log("error while updating user : ",err)

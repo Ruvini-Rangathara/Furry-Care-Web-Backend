@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UserRoute from "./routes/user-route";
 import DonationRoute from "./routes/donation-route";
+import EventRoute from "./routes/event-route";
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.json());
 
 // const uri = process.env.MONGO_URL as string;
 
-const url = 'mongodb://localhost:27017/furrycaredb';
+const url = 'mongodb://localhost:27017/furrycaredb1';
 
 mongoose.connect(url, {})
     .then(r => {
@@ -45,3 +46,4 @@ app.listen(port, host, () => {
 
 app.use('/api/user', UserRoute);
 app.use('/api/donation', DonationRoute);
+app.use('/api/event', EventRoute);
