@@ -5,6 +5,7 @@ import UserRoute from "./routes/user-route";
 import DonationRoute from "./routes/donation-route";
 import EventRoute from "./routes/event-route";
 import ComplaintRoute from "./routes/complaint-route";
+// import testRouter from "./controller/test-images";
 
 const app = express();
 
@@ -49,3 +50,4 @@ app.use('/api/user', UserRoute);
 app.use('/api/donation', DonationRoute);
 app.use('/api/event', EventRoute);
 app.use('/api/complaint', ComplaintRoute);
+// app.use('/upload', testRouter);

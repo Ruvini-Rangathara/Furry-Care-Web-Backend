@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "infinite-badge-391615",
+  "private_key_id": "600ecb76f9f068be3288a9991c5f9ede0c7cb9f6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDEhniJ2dktUcx3\nJRHwqNcX2/bD1RwVcNVERs6+9QJhDZOwxzHH9GoIj+K7qQqRsXK3FeuNRES8y9Td\n0Lu3lNSDm+Hh1s6WYOAwc1lVh7xQ3RQDA/OkXP7hXxz/okifEXkt/zQ3xbr8lj/4\n8IeGtHtyIueHhaMVD1urp0DmNRBeZ6iCM19r8yv1XJYfsnV2YP02/KpWE33Y0ccQ\nYduc+65Qtu7C2dY3xoe/H4YmdOTvDl27WbTqbjCGhuEe/6KTGnfRLKYxhJmz46D2\nPu+I++e72ZmX4vrG/ntCAzK36VymBnRCP0NweuDUa07WY0a7FBgRgNNjhhFZBjxJ\noGHehsQfAgMBAAECggEAGsHgSYySqDv55cLzVVv3pTT6vSEX6MdrEhe98Hv1bfdm\nQ2xrl7jscuv8R+a1HK8XWlwurRY9caMjAWx5En6+DIk90PzpNcpM2+vont+TQUNI\nhTyVgKx0u4Sysw+KabX8VMnpdyqB0gA3B5LgMPQD1r9v3KDSWnyz04Q7LtzMtL2U\nwXmySKWywIVY0pFeJyTCQuaschvtqIY19vGrdGfutAWhwhTzLw4RspIyN7L/Ghlp\nMX3X4kZPrIV7L9nLfVElzPwsyRnI7/zg9ayoXuHS7zhlVuu/I5gtVREWuC1CkV/Y\nPj4tevSamg92xQhW7qkAOrHuRN4eA7bpUsNNZP/ksQKBgQD+SIi746iROyz4fhiM\n+BpO+rPOhY5wCqOE5YK/mv+hA1sk3v5Bwj4LEIN4Ow3hXf3e7evluJJoZESHMfWo\n48AipCZ3kJAel3jkIw8q9FEzuin0hOHw7uK2pWNGDlYa0nVatY68hfdQH7Z4/XoP\n81Qu8oRTA93IsCPdX987Wo55GQKBgQDF2h2/5ZdsrHgpo/LE0Snr9QyoQ9eoqRah\n9WdusJvhWb4ziNVCsVgm0tG9Px0HQ9EGXXOCA/pPLpdlgdNIWXc4VrYWJflFYZ9M\ni6UbuaR7koDV5TZmY1Tc7xFBdk6UsYAC99WS2OVaZ9DIwB6qDmowOSz1sUTgbyI0\nZ21QZOP19wKBgQCFIWS1OlQe9WRuFVa1N5BOmWNaVQJmFqvWAHOb7YK4whEOFNH5\ni8D/+f1bDVAPFi68cMR42VGN5jEat0Vuzw7hFCAvqThLS/K3PsPKMW/yLR2aL5g7\nlFaOWbjIDOl30Ygvna7FdT4ubOwUHGGzyCnjCoXNENElKVMdq/wsDxVYwQKBgQCx\nta08/Mqa+PrhY/odoEXIQ42/4VfmjSHgDR1/RbBto/78KO5sfgBQttFe6z52lQo9\nbljeshX1Y0LnEMom1P0JpJDeqfMQx5Oe3FtL4N4FhFymQsAvDQ9fdngIVWxVkG0L\nvXGe+aRgJJlah33DfzkP4Xspn7Te5dNSQIfmSwialwKBgQCg74D1ayvfJxBeG3rS\nH218g7mbcANpPD86npgZYVDlfr/RV6MZHWvOO7DgoZ7fnpOdbswnE2ZIMygcBvct\njeQMSaYWNfYtesUf/lA+BKFbEEsPkIHnZJL/ffJfq3rSzrpnieZW3r4jjiEHPx3C\nB+ihV9O+Q6gYpvqUyZ5RMVuUdg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "furrycare@infinite-badge-391615.iam.gserviceaccount.com",
+  "client_id": "107334178718300775622",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/furrycare%40infinite-badge-391615.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
