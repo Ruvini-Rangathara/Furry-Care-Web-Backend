@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import UserRoute from "./routes/user-route";
 import DonationRoute from "./routes/donation-route";
 import EventRoute from "./routes/event-route";
+import ComplaintRoute from "./routes/complaint-route";
 
 const app = express();
 
@@ -47,3 +48,4 @@ app.listen(port, host, () => {
 app.use('/api/user', UserRoute);
 app.use('/api/donation', DonationRoute);
 app.use('/api/event', EventRoute);
+app.use('/api/complaint', ComplaintRoute);
