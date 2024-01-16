@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import User from "./user-model";
+import Pet from "./pet-model";
 
 interface LostNoticeDocument extends Document {
     id: string;
@@ -8,6 +9,7 @@ interface LostNoticeDocument extends Document {
     time: string;
     description: string;
     status: string;
+    petId: string;
     username: string;
 }
 
@@ -20,6 +22,17 @@ const lostNoticeSchema = new Schema<LostNoticeDocument, LostNoticeModel>({
     time: { type: String, required: true },
     description: { type: String, required: true },
     status: { type: String, required: true },
+    petId: {
+        type: String,
+        required: true,
+        validate: {
+            validator: async (value: string) => {
+                const user = await Pet.findOne({ id: value });
+                return user !== null;
+            },
+            message: (props: { value: string }) => `User with petId '${props.value}' does not exist.`,
+        },
+    },
     username: {
         type: String,
         required: true,

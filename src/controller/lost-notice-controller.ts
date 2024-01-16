@@ -20,6 +20,7 @@ export const addLostNotice = async (req: Request, res: Response) => {
         time: req.body.time,
         description: req.body.description,
         status: req.body.status,
+        petId: req.body.petId,
         username: req.body.username,
     });
 
@@ -45,6 +46,7 @@ export const updateLostNotice = async (req: Request, res: Response) => {
                     time: req.body.time,
                     description: req.body.description,
                     status: req.body.status,
+                    petId: req.body.petId,
                     username: req.body.username,
                 }
             }
