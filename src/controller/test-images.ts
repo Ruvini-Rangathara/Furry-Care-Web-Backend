@@ -61,7 +61,7 @@ const storageClient = new Storage({
     projectId: 'infinite-badge-391615', // Replace with your project ID
 });
 
-const bucketName = 'your-bucket-name'; // Replace with your bucket name
+const bucketName = 'furrycarebucket'; // Replace with your bucket name
 
 Router.post('/', upload.single('image'), async (req: Request, res: Response) => {
     try {

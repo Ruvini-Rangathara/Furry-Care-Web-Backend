@@ -7,6 +7,8 @@ import EventRoute from "./routes/event-route";
 import ComplaintRoute from "./routes/complaint-route";
 import PetRoute from "./routes/pet-route";
 import VetRoute from "./routes/vet-route";
+import Router from "./controller/test-images";
+import OrgRoute from "./routes/org-route";
 
 const app = express();
 
@@ -53,3 +55,6 @@ app.use('/api/event', EventRoute);
 app.use('/api/complaint', ComplaintRoute);
 app.use('/api/pet', PetRoute);
 app.use('/api/vet', VetRoute);
+app.use('/api/org', OrgRoute);
+
+app.use('/upload/images', Router);
