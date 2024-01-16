@@ -81,3 +81,23 @@ export const deleteComplaint = async (req: Request, res: Response) => {
         console.log("error while deleting complaint : ", err)
     }
 }
+
+//get new id for complaint. id pattern is C-0001, C-0002, C-0003, ...
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const complaints = await Complaint.find().sort({id: -1});
+        let newId = "";
+        if (complaints.length === 0) {
+            newId = "C-0001";
+        } else {
+            const lastId = complaints[0].id;
+            const lastIdNumber = parseInt(lastId.substring(2, 6));
+            newId = "C-" + (lastIdNumber + 1).toString().padStart(4, "0");
+        }
+        res.json(newId);
+        console.log("new id for complaint: ", newId);
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting new id for complaint'});
+        console.error('Error while getting new id for complaint:', err);
+    }
+};

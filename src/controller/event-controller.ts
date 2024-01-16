@@ -1,6 +1,7 @@
 import {Request, Response}  from "express";
 import Event from "../model/event-model";
 import User from "../model/user-model";
+import Complaint from "../model/complaint-model";
 
 export const getEvents = async (req: Request, res: Response) => {
     try {
@@ -86,3 +87,21 @@ export const deleteEvent = async (req: Request, res: Response) => {
     }
 };
 
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const events = await Event.find().sort({id: -1});
+        let newId = "";
+        if (events.length === 0) {
+            newId = "E-0001";
+        } else {
+            const lastId = events[0].id;
+            const lastIdNumber = parseInt(lastId.substring(2, 6));
+            newId = "E-" + (lastIdNumber + 1).toString().padStart(4, "0");
+        }
+        res.json(newId);
+        console.log("new id for event: ", newId);
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting new id for event'});
+        console.error('Error while getting new id for event:', err);
+    }
+};

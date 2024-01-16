@@ -90,3 +90,23 @@ export const getOrgCount = async (req: Request, res: Response) => {
         console.error("error while getting org count: ", err);
     }
 };
+
+
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const orgs = await Org.find().sort({id: -1});
+        let newId = "";
+        if (orgs.length === 0) {
+            newId = "O-0001";
+        } else {
+            const lastId = orgs[0].id;
+            const lastIdNumber = parseInt(lastId.substring(2, 6));
+            newId = "O-" + (lastIdNumber + 1).toString().padStart(4, "0");
+        }
+        res.json(newId);
+        console.log("new id for org: ", newId);
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting new id for org'});
+        console.error('Error while getting new id for org:', err);
+    }
+}

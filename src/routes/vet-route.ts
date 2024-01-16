@@ -8,5 +8,6 @@ vetRouter.put('/update/:id', vetController.updateVet);
 vetRouter.delete('/delete/:id', vetController.deleteVet);
 vetRouter.get('/getById/:id', vetController.getVetById);
 vetRouter.get('/count', vetController.getCount);
+vetRouter.get('/getNewId', vetController.getNewId);
 
 export default vetRouter;

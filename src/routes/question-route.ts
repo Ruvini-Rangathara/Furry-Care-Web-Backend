@@ -6,5 +6,6 @@ questionRouter.get('/getAll', questionController.getQuestions);
 questionRouter.post('/add', questionController.addQuestion);
 questionRouter.delete('/delete/:id', questionController.deleteQuestion);
 questionRouter.get('/getById/:id', questionController.getQuestionById);
+questionRouter.get('/getNewId', questionController.getNewId);
 
 export default questionRouter;

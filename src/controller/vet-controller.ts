@@ -108,3 +108,24 @@ export const getCount = async (req: Request, res: Response) => {
         console.error('Error while counting vets:', err);
     }
 };
+
+
+
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const vets = await Vet.find().sort({id: -1});
+        let newId = "";
+        if (vets.length === 0) {
+            newId = "V-0001";
+        } else {
+            const lastId = vets[0].id;
+            const lastIdNumber = parseInt(lastId.substring(2, 6));
+            newId = "V-" + (lastIdNumber + 1).toString().padStart(4, "0");
+        }
+        res.json(newId);
+        console.log("new id for vet: ", newId);
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting new id for vet'});
+        console.error('Error while getting new id for vet:', err);
+    }
+}

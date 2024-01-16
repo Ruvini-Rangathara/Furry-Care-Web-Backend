@@ -7,5 +7,6 @@ eventRouter.post('/add', eventController.addEvent);
 eventRouter.put('/update/:id', eventController.updateEvent);
 eventRouter.get('/getById/:id', eventController.getEventById);
 eventRouter.delete('/delete/:id', eventController.deleteEvent);
+eventRouter.get('/getNewId', eventController.getNewId);
 
 export default eventRouter;

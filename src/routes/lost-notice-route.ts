@@ -7,6 +7,6 @@ lostNoticeRouter.post('/add', lostNoticeController.addLostNotice);
 lostNoticeRouter.put('/update/:id', lostNoticeController.updateLostNotice);
 lostNoticeRouter.delete('/delete/:id', lostNoticeController.deleteLostNotice);
 lostNoticeRouter.get('/getById/:id', lostNoticeController.getLostNoticeById);
-
+lostNoticeRouter.get('/getNewId', lostNoticeController.getNewId);
 
 export default lostNoticeRouter;

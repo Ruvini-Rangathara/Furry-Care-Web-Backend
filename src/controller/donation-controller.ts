@@ -85,3 +85,21 @@ export const deleteDonation = async (req:Request,res:Response)=>{
     }
 }
 
+
+//get new id for Donation. id pattern is D-0001, D-0002, D-0003, ...
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const donations = await Donation.find().sort({ id: -1 }).limit(1);
+        if (donations.length == 0) {
+            res.json({ id: "D-0001" });
+        } else {
+            let id = donations[0].id;
+            let idNum = parseInt(id.substring(2, 6)) + 1;
+            let newId = "D-" + idNum.toString().padStart(4, "0");
+            res.json({ id: newId });
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Error while getting new id' });
+        console.error('Error while getting new id:', err);
+    }
+};

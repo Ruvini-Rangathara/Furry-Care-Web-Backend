@@ -101,3 +101,22 @@ export const increaseUnlike = async (req: Request, res: Response) => {
         console.log("error while updating answer : ", err)
     }
 }
+
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const answers = await Answer.find();
+        let maxId = 0;
+        answers.forEach((answer) => {
+            let id = parseInt(answer.id.split("-")[1]);
+            if (id > maxId) {
+                maxId = id;
+            }
+        })
+        let newId = "A-" + (maxId + 1).toString().padStart(4, '0');
+        res.json(newId);
+        console.log("New answer id:", newId);
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting new answer id'});
+        console.error('Error while getting new answer id:', err);
+    }
+}

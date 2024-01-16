@@ -85,3 +85,22 @@ export const getPetById = async (req: Request, res: Response) => {
         console.error('Error while getting pet:', err);
     }
 }
+
+export const getNewId = async (req: Request, res: Response) => {
+    try {
+        const pets = await Pet.find().sort({id: -1});
+        let newId = "";
+        if (pets.length === 0) {
+            newId = "P-0001";
+        } else {
+            const lastId = pets[0].id;
+            const lastIdNumber = parseInt(lastId.substring(2, 6));
+            newId = "P-" + (lastIdNumber + 1).toString().padStart(4, "0");
+        }
+        res.json(newId);
+        console.log("new id for pet: ", newId);
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting new id for pet'});
+        console.error('Error while getting new id for pet:', err);
+    }
+}

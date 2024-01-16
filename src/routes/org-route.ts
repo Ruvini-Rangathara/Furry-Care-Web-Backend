@@ -10,5 +10,6 @@ orgRouter.put('/update/:id', orgController.updateOrg);
 orgRouter.delete('/delete/:id', orgController.deleteOrg);
 orgRouter.get('/getById/:id', orgController.getOrgById);
 orgRouter.get('/count', orgController.getOrgCount);
+orgRouter.get('/getNewId', orgController.getNewId);
 
 export default orgRouter;
