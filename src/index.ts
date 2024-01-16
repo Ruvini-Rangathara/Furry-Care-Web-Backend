@@ -10,6 +10,7 @@ import VetRoute from "./routes/vet-route";
 import Router from "./controller/test-images";
 import OrgRoute from "./routes/org-route";
 import LostNoticeRoute from "./routes/lost-notice-route";
+import QuestionRoute from "./routes/question-route";
 
 const app = express();
 
@@ -58,5 +59,6 @@ app.use('/api/pet', PetRoute);
 app.use('/api/vet', VetRoute);
 app.use('/api/org', OrgRoute);
 app.use('/api/lost', LostNoticeRoute);
+app.use('/api/question', QuestionRoute);
 
 app.use('/upload/images', Router);
