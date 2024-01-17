@@ -1,91 +1,80 @@
-import { Request, Response } from 'express';
-import User from '../model/user-model';
+import userSchema from '../model/user-model';
+import bcrypt from "bcrypt";
+// import nodemailer from "nodemailer";
+import jsonwebtoken from "jsonwebtoken";
+const salt=10;
 
-export const getUsers = async (req: Request, res: Response) => {
-    try {
-        const users = await User.find();
-        res.json(users);
-        console.log("users: ",users.toString())
-    } catch (err) {
-        res.json({ message: err });
-        console.log("error while getting users")
-    }
-}
+export const register = (req:any,resp:any) => {
 
-export const addUser = async (req: Request, res: Response) => {
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password,
-        role: req.body.role,
-        name: req.body.name,
-        email: req.body.email,
-        location: req.body.location,
-        contact: req.body.contact,
-    });
-
-    try {
-        const savedUser = await user.save();
-        console.log("save user!")
-        res.json(savedUser);
-    } catch (err) {
-        res.json({ message: err });
-        console.log("can not save user! ", err)
-    }
-}
-
-export const updateUser = async (req: Request, res: Response) => {
-    try {
-        const updatedUser = await User.updateOne(
-            { username: req.params.username },
-            {
-                $set: {
-                    username: req.body.username,
-                    password: req.body.password,
-                    role: req.body.role,
-                    name: req.body.name,
-                    email: req.body.email,
-                    location: req.body.location,
-                    contact: req.body.contact,
+    userSchema.findOne({'username':req.body.username}).then(result=>{
+        if(result==null){
+            bcrypt.hash(req.body.password,salt,function (err,hash) {
+                if (err){
+                    return resp.status(500).json(err);
                 }
-            }
-        );
-        res.json(updatedUser);
-        console.log("updated user!")
-    } catch (err) {
-        res.json({ message: err });
-        console.log("error while updating user : ",err)
-    }
+                const user = new userSchema({
+                    username:req.body.username,
+                    password:hash,
+                    activeState:true
+                });
+
+                // const transporter= nodemailer.createTransport({
+                //     service:'gmail',
+                //     auth:{
+                //         user:'testdevstackemail@gmail.com',
+                //         pass:'jxdo sqxg szag keuu',
+                //     }
+                // });
+
+                // const mailOption={
+                //     from:'testdevstackemail@gmail.com',
+                //     to:req.body.email,
+                //     subject:'New Account Creation',
+                //     text:'You have Created Your Account!'
+                // }
+                // transporter.sendMail(mailOption, function (error, info) {
+                //     if (error){
+                //         return resp.status(500).json({'error':error});
+                //     }else{
+                //         user.save().then(saveResponse=>{
+                //             return resp.status(201).json({'message':'Saved!'});
+                //         }).catch(error=>{
+                //             return resp.status(500).json(error);
+                //         });
+                //     }
+                // })
+            })
+        }else{
+            return resp.status(409).json({'error':'already exists!'});
+        }
+    })
+
 
 }
+export const login = (req:any,resp:any) => {
+    userSchema.findOne({'username':req.body.username}).then(selectedUser=>{
+        if (selectedUser!==null){
+            bcrypt.compare(req.body.password, selectedUser.password, function(err, result) {
+                if (err){
+                    return resp.status(500).json({'message':'internal server error'});
+                }
 
-export const getUserById = async (req: Request, res: Response) => {
-    try {
-        const user = await User.findOne({ username: req.params.username });
-        res.json(user);
-    } catch (err) {
-        res.json({ message: err });
-        console.log("error while getting user : ",err)
-    }
-}
+                if(result){
+                    const payload={
+                        // email:selectedUser.email
+                    }
 
-export const deleteUser = async (req: Request, res: Response) => {
-    try {
-        const removedUser = await User.deleteOne({ username: req.params.username });
-        res.json(removedUser);
-        console.log("delete user!")
-    } catch (err) {
-        res.json({ message: err });
-        console.log("error while deleting user : ",err)
-    }
-}
+                    const secretKey:any=process.env.SECRET_KEY;
+                    const expiresIn='24h';
 
-export const getUserByRole = async (req: Request, res: Response) => {
-    try {
-        const user = await User.find({ role: req.params.role });
-        res.json(user);
-        console.log("get user by role!")
-    } catch (err) {
-        res.json({ message: err });
-        console.log("error while getting user : ",err)
-    }
+                    const token = jsonwebtoken.sign(payload,secretKey,{expiresIn});
+                    return resp.status(200).json(token);
+                }else{
+                    return resp.status(401).json({'message':'Password is incorrect!'});
+                }
+            });
+        }else{
+            return resp.status(404).json({'message':'not found!'});
+        }
+    });
 }

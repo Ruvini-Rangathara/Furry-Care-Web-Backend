@@ -76,6 +76,7 @@ export const deletePet = async (req: Request, res: Response) => {
 
 export const getPetById = async (req: Request, res: Response) => {
     const petId = req.params.id;
+
     try {
         const pet = await Pet.findOne({ id: petId });
         res.json(pet);
