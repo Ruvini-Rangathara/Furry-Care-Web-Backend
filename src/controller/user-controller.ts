@@ -2,6 +2,8 @@ import userSchema from '../model/user-model';
 import bcrypt from "bcrypt";
 // import nodemailer from "nodemailer";
 import jsonwebtoken from "jsonwebtoken";
+import {Request, Response} from "express";
+import Pet from "../model/pet-model";
 const salt=10;
 
 export const register = (req:any,resp:any) => {
@@ -77,4 +79,36 @@ export const login = (req:any,resp:any) => {
             return resp.status(404).json({'message':'not found!'});
         }
     });
+}
+
+
+export const getUsers = async (req: Request, res: Response) => {
+    try {
+        const users = await userSchema.find().sort({name: 1});
+        res.json(users);
+        console.log("Users:", users.toString());
+    } catch (err) {
+        res.status(500).json({message: 'Error while getting users'});
+        console.error('Error while getting pets:', err);
+    }
+};
+
+
+export const addUser = async (req: Request, res: Response) => {
+    console.log("add user! in backend");
+    const user = new userSchema({
+        username: req.body.username,
+        password: req.body.password,
+        role: req.body.role,
+        activeState: req.body.activeState,
+    });
+
+    try {
+        const savedUser = await user.save();
+        console.log("save user!")
+        res.json(savedUser);
+    } catch (err) {
+        res.json({message: err});
+        console.log("can not save user! ", err)
+    }
 }
