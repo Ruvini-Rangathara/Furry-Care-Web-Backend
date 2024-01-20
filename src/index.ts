@@ -7,7 +7,7 @@ import EventRoute from "./routes/event-route";
 import ComplaintRoute from "./routes/complaint-route";
 import PetRoute from "./routes/pet-route";
 import VetRoute from "./routes/vet-route";
-import Router from "./controller/test-images";
+import Router from "./controller/image-contoller";
 import OrgRoute from "./routes/org-route";
 import LostNoticeRoute from "./routes/lost-notice-route";
 import QuestionRoute from "./routes/question-route";
@@ -63,4 +63,4 @@ app.use('/api/lost', LostNoticeRoute);
 app.use('/api/question', QuestionRoute);
 app.use('/api/answer', AnswerRoute);
 
-app.use('/upload/images', Router);
+app.use('/api/upload/images', Router);

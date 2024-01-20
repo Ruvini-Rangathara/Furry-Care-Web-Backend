@@ -64,6 +64,7 @@ const storageClient = new Storage({
 const bucketName = 'furrycarebucket'; // Replace with your bucket name
 
 Router.post('/', upload.single('image'), async (req: Request, res: Response) => {
+    console.log("In image controller backend");
     try {
         if (!req.file) {
             return res.status(400).json({ success: 0, message: 'No file uploaded.' });
@@ -80,6 +81,7 @@ Router.post('/', upload.single('image'), async (req: Request, res: Response) => 
         const publicUrl = `https://storage.googleapis.com/${bucketName}/${originalname}`;
 
         res.json({ success: 1, profile_url: publicUrl });
+        console.log("image saved!")
     } catch (err) {
         console.error('Error uploading to Google Cloud Storage:', err);
         res.status(500).json({ success: 0, message: 'Internal server error.' });

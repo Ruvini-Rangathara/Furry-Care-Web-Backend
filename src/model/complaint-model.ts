@@ -11,7 +11,7 @@ interface ComplaintDocument extends Document {
     username: string;
 }
 
-interface ComplaintModel extends Model<ComplaintDocument> {}
+interface ComplaintModel extends Model<ComplaintDocument> { }
 
 const complaintSchema = new Schema<ComplaintDocument, ComplaintModel>({
     id: { type: String, required: true, unique: true },
@@ -19,7 +19,7 @@ const complaintSchema = new Schema<ComplaintDocument, ComplaintModel>({
     title: { type: String, required: true },
     description: { type: String, required: true },
     location: { type: String, required: true },
-    status: { type: String, required: true},
+    status: { type: String, required: true },
     username: {
         type: String,
         required: true,

@@ -1,20 +1,22 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 import Pet from "../model/pet-model";
-import {WriteError} from "mongodb";
+import { WriteError } from "mongodb";
 
 export const getPets = async (req: Request, res: Response) => {
     try {
-        const pets = await Pet.find().sort({name: 1});
+        const pets = await Pet.find().sort({ name: 1 });
         res.json(pets);
         console.log("Pets:", pets.toString());
     } catch (err) {
-        res.status(500).json({message: 'Error while getting pets'});
+        res.status(500).json({ message: 'Error while getting pets' });
         console.error('Error while getting pets:', err);
     }
 };
 
 export const addPet = async (req: Request, res: Response) => {
     console.log("add pet! in backend");
+    console.log("image url : ", req.body.imageUrl)
+
     const pet = new Pet({
         id: req.body.id,
         petType: req.body.petType,
@@ -24,14 +26,20 @@ export const addPet = async (req: Request, res: Response) => {
         colors: req.body.colors,
         ownershipStatus: req.body.ownershipStatus,
         injuredStatus: req.body.injuredStatus,
+        imageUrl:req.body.imageUrl,
         username: req.body.username,
     });
+console.log(pet.imageUrl)
 
+    console.log("-----------------------------------------------------------------------------------------------------")
+    console.log("pet in backend : ", JSON.stringify(pet));
+    console.log("-----------------------------------------------------------------------------------------------------")
     try {
         const savedPet = await pet.save();
         console.log("save pet!")
         res.json(savedPet);
-    } catch (err:any) {
+        res.end();
+    } catch (err: any) {
         if (err.code === 11000 || err.keyPattern) {
             // Handle MongoDB duplicate key error
             console.log("Duplicate key error: Pet with the same ID already exists.");
@@ -101,7 +109,7 @@ export const deletePet = async (req: Request, res: Response) => {
 };
 
 export const getPetById = async (req: Request, res: Response) => {
-    console.log("get pet by id! in backend : ",req.params.id);
+    console.log("get pet by id! in backend : ", req.params.id);
     const petId = req.params.id;
 
     try {
@@ -116,7 +124,7 @@ export const getPetById = async (req: Request, res: Response) => {
 
 export const getNewId = async (req: Request, res: Response) => {
     try {
-        const pets = await Pet.find().sort({id: -1});
+        const pets = await Pet.find().sort({ id: -1 });
         let newId = "";
         if (pets.length === 0) {
             newId = "P-0001";
@@ -128,7 +136,7 @@ export const getNewId = async (req: Request, res: Response) => {
         res.json(newId);
         console.log("new id for pet: ", newId);
     } catch (err) {
-        res.status(500).json({message: 'Error while getting new id for pet'});
+        res.status(500).json({ message: 'Error while getting new id for pet' });
         console.error('Error while getting new id for pet:', err);
     }
 }

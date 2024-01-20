@@ -10,6 +10,7 @@ interface PetDocument extends Document {
     colors: string;
     ownershipStatus: string;
     injuredStatus: string;
+    imageUrl: string;
     username: string;
 }
 
@@ -22,8 +23,9 @@ const petSchema = new Schema<PetDocument, PetModel>({
     age: { type: Number, required: true },
     breed: { type: String, required: true },
     colors: { type: String, required: true },
-    ownershipStatus: { type: String, required: true },
+    ownershipStatus: { type: String ,required: true},
     injuredStatus: { type: String, required: true },
+    imageUrl: { type: String, default: undefined },
     username: {
         type: String,
         required: true,
