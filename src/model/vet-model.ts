@@ -10,6 +10,7 @@ interface VetDocument extends mongoose.Document {
     email: string;
     contact: string;
     qualification: string;
+    imageUrl: string;
     username: string;
 }
 
@@ -24,6 +25,7 @@ const vetSchema = new mongoose.Schema<VetDocument, VetModel>({
     email: { type: String, required: true },
     contact: { type: String, required: true },
     qualification: { type: String, required: true },
+    imageUrl: { type: String, required: true },
     username: {
         type: String,
         required: true,

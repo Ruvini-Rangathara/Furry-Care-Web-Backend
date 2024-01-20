@@ -14,7 +14,7 @@ export const getVets = async (req: Request, res: Response) => {
 
 export const addVet = async (req: Request, res: Response) => {
     try {
-        const { id, name, gender, nic, location, email, contact, qualification, username } = req.body;
+        const { id, name, gender, nic, location, email, contact, qualification, username, imageUrl } = req.body;
 
         const vet = new Vet({
             id,
@@ -25,6 +25,7 @@ export const addVet = async (req: Request, res: Response) => {
             email,
             contact,
             qualification,
+            imageUrl,
             username,
         });
 
@@ -40,7 +41,7 @@ export const addVet = async (req: Request, res: Response) => {
 
 export const updateVet = async (req: Request, res: Response) => {
     try {
-        const { id, name, gender, nic, location, email, contact, qualification, username } = req.body;
+        const { id, name, gender, nic, location, email, contact, qualification, username,imageUrl } = req.body;
         const vet = await Vet.updateOne(
             {id: req.params.id},
             {
@@ -53,6 +54,7 @@ export const updateVet = async (req: Request, res: Response) => {
                     email,
                     contact,
                     qualification,
+                    imageUrl,
                     username,
                 }
             }

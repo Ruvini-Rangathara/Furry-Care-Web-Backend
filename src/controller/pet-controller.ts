@@ -26,10 +26,10 @@ export const addPet = async (req: Request, res: Response) => {
         colors: req.body.colors,
         ownershipStatus: req.body.ownershipStatus,
         injuredStatus: req.body.injuredStatus,
-        imageUrl:req.body.imageUrl,
+        imageUrl: req.body.imageUrl,
         username: req.body.username,
     });
-console.log(pet.imageUrl)
+    console.log(pet.imageUrl)
 
     console.log("-----------------------------------------------------------------------------------------------------")
     console.log("pet in backend : ", JSON.stringify(pet));
@@ -75,6 +75,7 @@ export const updatePet = async (req: Request, res: Response) => {
                     colors: req.body.colors,
                     ownershipStatus: req.body.ownershipStatus,
                     injuredStatus: req.body.injuredStatus,
+                    imageUrl: req.body.imageUrl,
                     username: req.body.username,
                 },
             }

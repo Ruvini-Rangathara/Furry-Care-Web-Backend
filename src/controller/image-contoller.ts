@@ -48,7 +48,6 @@
 import express, { Request, Response } from "express";
 import multer from 'multer';
 import { Storage } from '@google-cloud/storage';
-
 const Router = express.Router();
 
 // Configure multer storage
@@ -60,7 +59,6 @@ const storageClient = new Storage({
     keyFilename: 'src/infinite-badge-391615-600ecb76f9f0.json', // Replace with your key file path
     projectId: 'infinite-badge-391615', // Replace with your project ID
 });
-
 const bucketName = 'furrycarebucket'; // Replace with your bucket name
 
 Router.post('/', upload.single('image'), async (req: Request, res: Response) => {
@@ -69,7 +67,6 @@ Router.post('/', upload.single('image'), async (req: Request, res: Response) => 
         if (!req.file) {
             return res.status(400).json({ success: 0, message: 'No file uploaded.' });
         }
-
         const fileBuffer = req.file.buffer;
         const originalname = req.file.originalname;
 
@@ -77,9 +74,8 @@ Router.post('/', upload.single('image'), async (req: Request, res: Response) => 
         const file = bucket.file(originalname);
 
         await file.save(fileBuffer);
-
         const publicUrl = `https://storage.googleapis.com/${bucketName}/${originalname}`;
-
+        
         res.json({ success: 1, profile_url: publicUrl });
         console.log("image saved!")
     } catch (err) {
@@ -87,10 +83,8 @@ Router.post('/', upload.single('image'), async (req: Request, res: Response) => 
         res.status(500).json({ success: 0, message: 'Internal server error.' });
     }
 });
-
 // Serve static files from Google Cloud Storage
 Router.use('/images', express.static(`https://storage.googleapis.com/${bucketName}`));
-
 export default Router;
 
 
