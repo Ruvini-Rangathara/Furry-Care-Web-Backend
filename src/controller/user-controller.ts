@@ -123,3 +123,19 @@ export const login = async (req: Request, res: Response) => {
     console.log("success")
     return res.status(200).json({ status: 'success', message: 'Login successful' });
 }
+
+
+export const getUserByUsername = async (req: Request, res: Response) => {
+    try {
+        const user = await userSchema.findOne({ username: req.params.username });
+
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Error while getting user' });
+        console.error('Error while getting user:', err);
+    }
+};
